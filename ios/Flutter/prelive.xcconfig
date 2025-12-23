@@ -1,0 +1,10 @@
+#include "Generated.xcconfig"
+PRODUCT_BUNDLE_IDENTIFIER = com.izoe.pos_manager.prelive
+FLUTTER_BUILD_NAME = 1.0.0
+FLUTTER_BUILD_NUMBER = 1
+FLAVOR = prelive
+FLUTTER_TARGET = lib/main.dart
+APP_NAME = Pos Manager Prelive
+LAUNCH_SCREEN_STORYBOARD=LaunchScreenPrelive
+BUNDLE_NAME = pos_manager
+

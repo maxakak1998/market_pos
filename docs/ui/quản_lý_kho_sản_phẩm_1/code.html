@@ -1,0 +1,319 @@
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quản lý Kho sản phẩm</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f48525",
+                        "primary-content": "#ffffff",
+                        "background-light": "#fcfaf8",
+                        "background-dark": "#1e1611", 
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2f2219",
+                        "text-main": "#1c140d",
+                        "text-secondary": "#9c7049",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+</head><body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-white overflow-hidden min-h-screen flex selection:bg-primary/30">
+<aside class="hidden lg:flex flex-col w-[280px] bg-surface-light dark:bg-surface-dark border-r border-[#f4ede7] dark:border-white/10 z-50 h-full shrink-0">
+<div class="h-24 flex items-center px-6 border-b border-[#f4ede7] dark:border-white/10 shrink-0">
+<div class="flex items-center gap-3">
+<div class="size-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30 shrink-0">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<div class="flex flex-col justify-center">
+<h1 class="text-xl font-black tracking-tight text-text-main dark:text-white uppercase leading-none">Chợ Số</h1>
+<span class="text-[11px] font-bold text-text-secondary mt-1 tracking-tight">Trợ lý bán hàng tiểu thương</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto p-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-text-secondary hover:bg-stone-50 dark:hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">point_of_sale</span>
+<span class="group-hover:text-text-main dark:group-hover:text-white transition-colors">Bán hàng (POS)</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold bg-primary text-white shadow-md shadow-orange-500/20 transition-all" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Kho sản phẩm</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-text-secondary hover:bg-stone-50 dark:hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">receipt_long</span>
+<span class="group-hover:text-text-main dark:group-hover:text-white transition-colors">Nhập từ hóa đơn</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-text-secondary hover:bg-stone-50 dark:hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">bar_chart</span>
+<span class="group-hover:text-text-main dark:group-hover:text-white transition-colors">Doanh thu</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3.5 rounded-xl font-bold text-text-secondary hover:bg-stone-50 dark:hover:bg-white/5 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">calculate</span>
+<span class="group-hover:text-text-main dark:group-hover:text-white transition-colors">Tính thuế</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#f4ede7] dark:border-white/10 shrink-0">
+<div class="flex items-center gap-3 px-4 py-3 rounded-2xl bg-stone-50 dark:bg-white/5 border border-stone-100 dark:border-white/5 cursor-pointer hover:bg-stone-100 dark:hover:bg-white/10 transition-colors">
+<div class="size-10 rounded-full bg-stone-200 dark:bg-stone-700 flex items-center justify-center text-text-secondary font-bold shrink-0">
+                    CL
+                </div>
+<div class="flex flex-col overflow-hidden">
+<span class="text-sm font-bold text-text-main dark:text-white truncate">Cô Lan</span>
+<span class="text-xs text-text-secondary truncate">Tiểu thương</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<header class="h-20 bg-surface-light dark:bg-surface-dark border-b border-[#f4ede7] dark:border-white/10 flex items-center justify-between px-4 md:px-8 shrink-0 z-40">
+<div class="flex items-center gap-4">
+<button class="lg:hidden p-2 -ml-2 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 text-text-secondary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex flex-col">
+<h2 class="text-xl md:text-2xl font-black text-text-main dark:text-white tracking-tight">Quản lý Kho sản phẩm</h2>
+</div>
+</div>
+<div class="flex items-center gap-3 md:gap-5">
+<div class="hidden md:flex items-center bg-stone-100 dark:bg-stone-800 rounded-full px-4 h-12 w-64 lg:w-80 focus-within:ring-2 ring-primary/50 transition-all border border-transparent focus-within:border-primary">
+<span class="material-symbols-outlined text-text-secondary mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-bold w-full text-text-main dark:text-white placeholder:text-text-secondary/70" placeholder="Tìm sản phẩm, mã SKU..." type="text"/>
+</div>
+<button class="size-11 rounded-full hover:bg-stone-100 dark:hover:bg-stone-800 flex items-center justify-center text-text-secondary relative transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2.5 bg-red-500 rounded-full border-2 border-surface-light dark:border-surface-dark"></span>
+</button>
+<div class="flex items-center gap-3 pl-2 border-l border-stone-200 dark:border-stone-700">
+<div class="text-right hidden xl:block">
+<p class="text-sm font-bold text-text-main dark:text-white">Cô Lan</p>
+<p class="text-xs text-text-secondary font-medium">Tiểu thương</p>
+</div>
+<div class="size-11 rounded-full bg-cover bg-center border-2 border-white shadow-sm cursor-pointer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCdtVA-V4BgFmkKg_YzKW-DkfSOKXrbl4tziDBgYdaECJ_W5Efjkk8h68BkOKEQ6ZsITGqKgYm5EIaIDfdoiel5x1b-sol33zL_dT_QUGtjQBoDxYrLrsUIOXSNJjN7XMtFYrnZ4NHlaoij9f_u7reESKWJ29hjysRMDdMND13NAtSkCeHw2TT8dQAd2d-yq8a8COJgnxRSKvzA2I7rjThPH-hsqvUsp2zVHU9uhHznyJCAIpx3amk6AmPMnWnqv1bxHAWPq0YoNKE");'></div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 scroll-smooth bg-background-light dark:bg-background-dark">
+<div class="max-w-[1600px] mx-auto w-full flex flex-col gap-6 md:gap-8 pb-10">
+<div class="flex flex-col xl:flex-row items-center justify-between gap-4 w-full">
+<div class="flex items-center gap-3 overflow-x-auto scrollbar-hide w-full xl:w-auto pb-1 xl:pb-0">
+<button class="px-6 h-12 rounded-xl bg-text-main dark:bg-white text-white dark:text-text-main font-bold whitespace-nowrap shadow-md text-base">Tất cả</button>
+<button class="px-6 h-12 rounded-xl bg-surface-light dark:bg-surface-dark border border-stone-200 dark:border-stone-700 text-text-secondary font-bold whitespace-nowrap hover:border-primary hover:text-primary dark:hover:text-white transition-all text-base">Trái cây</button>
+<button class="px-6 h-12 rounded-xl bg-surface-light dark:bg-surface-dark border border-stone-200 dark:border-stone-700 text-text-secondary font-bold whitespace-nowrap hover:border-primary hover:text-primary dark:hover:text-white transition-all text-base">Rau củ</button>
+<button class="px-6 h-12 rounded-xl bg-surface-light dark:bg-surface-dark border border-stone-200 dark:border-stone-700 text-text-secondary font-bold whitespace-nowrap hover:border-primary hover:text-primary dark:hover:text-white transition-all text-base">Thịt &amp; Cá</button>
+<button class="px-6 h-12 rounded-xl bg-surface-light dark:bg-surface-dark border border-stone-200 dark:border-stone-700 text-text-secondary font-bold whitespace-nowrap hover:border-primary hover:text-primary dark:hover:text-white transition-all text-base">Đồ khô</button>
+</div>
+<button class="w-full xl:w-auto h-14 pl-6 pr-8 rounded-2xl bg-primary text-white font-bold text-lg hover:bg-orange-600 active:scale-95 transition-all shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 shrink-0">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span>Thêm Sản Phẩm</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col gap-4 hover:shadow-md transition-shadow h-full">
+<div class="flex justify-between items-start">
+<span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide">Trái cây</span>
+<button class="text-stone-400 hover:text-primary transition-colors p-1 -mr-2">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="text-xl font-bold text-text-main dark:text-white leading-tight truncate mt-1" title="Táo Envy Mỹ sấy khô">Táo Envy Mỹ</h3>
+<p class="text-primary font-bold text-base mt-1">150.000 đ <span class="text-text-secondary font-normal text-sm">/ Kg</span></p>
+</div>
+<div class="bg-stone-50 dark:bg-stone-800/50 rounded-xl p-3 flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Tồn kho (Kg)</span>
+<span class="text-3xl font-black text-text-main dark:text-white leading-none mt-1">50</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="size-12 rounded-2xl bg-white dark:bg-stone-700 text-text-main dark:text-white shadow-sm border border-stone-200 dark:border-stone-600 flex items-center justify-center hover:bg-stone-50 active:scale-95 transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-12 rounded-2xl bg-primary text-white shadow-md shadow-orange-500/20 flex items-center justify-center hover:bg-orange-600 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="h-12 rounded-2xl bg-stone-100 dark:bg-stone-700 text-text-main dark:text-white font-bold text-sm hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-text-main dark:group-hover:text-white">edit</span> Sửa
+                            </button>
+<button class="h-12 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">delete</span> Xóa
+                            </button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col gap-4 hover:shadow-md transition-shadow h-full">
+<div class="flex justify-between items-start">
+<span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide">Trái cây</span>
+<button class="text-stone-400 hover:text-primary transition-colors p-1 -mr-2">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="text-xl font-bold text-text-main dark:text-white leading-tight truncate mt-1">Cam sành Tiền Giang</h3>
+<p class="text-primary font-bold text-base mt-1">25.000 đ <span class="text-text-secondary font-normal text-sm">/ Kg</span></p>
+</div>
+<div class="bg-stone-50 dark:bg-stone-800/50 rounded-xl p-3 flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Tồn kho (Kg)</span>
+<span class="text-3xl font-black text-text-main dark:text-white leading-none mt-1">120</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="size-12 rounded-2xl bg-white dark:bg-stone-700 text-text-main dark:text-white shadow-sm border border-stone-200 dark:border-stone-600 flex items-center justify-center hover:bg-stone-50 active:scale-95 transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-12 rounded-2xl bg-primary text-white shadow-md shadow-orange-500/20 flex items-center justify-center hover:bg-orange-600 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="h-12 rounded-2xl bg-stone-100 dark:bg-stone-700 text-text-main dark:text-white font-bold text-sm hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-text-main dark:group-hover:text-white">edit</span> Sửa
+                            </button>
+<button class="h-12 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">delete</span> Xóa
+                            </button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col gap-4 hover:shadow-md transition-shadow h-full relative">
+<div class="flex justify-between items-start">
+<span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide">Trái cây</span>
+<button class="text-stone-400 hover:text-primary transition-colors p-1 -mr-2">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="text-xl font-bold text-text-main dark:text-white leading-tight truncate mt-1">Xoài Cát Hòa Lộc</h3>
+<p class="text-primary font-bold text-base mt-1">65.000 đ <span class="text-text-secondary font-normal text-sm">/ Trái</span></p>
+</div>
+<div class="bg-red-50 dark:bg-red-900/10 rounded-xl p-3 flex items-center justify-between mt-auto border border-red-100 dark:border-red-900/30">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-red-700 dark:text-red-300 uppercase tracking-wider">Tồn kho (Trái)</span>
+<span class="text-3xl font-black text-red-600 dark:text-red-400 leading-none mt-1">0</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="size-12 rounded-2xl bg-stone-100 dark:bg-stone-800 text-stone-400 cursor-not-allowed flex items-center justify-center opacity-50" disabled="">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-12 rounded-2xl bg-primary text-white shadow-md shadow-orange-500/20 flex items-center justify-center hover:bg-orange-600 active:scale-95 transition-all animate-pulse">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="h-12 rounded-2xl bg-stone-100 dark:bg-stone-700 text-text-main dark:text-white font-bold text-sm hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-text-main dark:group-hover:text-white">edit</span> Sửa
+                            </button>
+<button class="h-12 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">delete</span> Xóa
+                            </button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-stone-200 dark:border-stone-700 flex flex-col gap-4 hover:shadow-md transition-shadow h-full">
+<div class="flex justify-between items-start">
+<span class="bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-xs font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide">Trái cây</span>
+<button class="text-stone-400 hover:text-primary transition-colors p-1 -mr-2">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<div>
+<h3 class="text-xl font-bold text-text-main dark:text-white leading-tight truncate mt-1">Dưa hấu Long An</h3>
+<p class="text-primary font-bold text-base mt-1">12.000 đ <span class="text-text-secondary font-normal text-sm">/ Kg</span></p>
+</div>
+<div class="bg-stone-50 dark:bg-stone-800/50 rounded-xl p-3 flex items-center justify-between mt-auto">
+<div class="flex flex-col">
+<span class="text-[10px] font-bold text-text-secondary uppercase tracking-wider">Tồn kho (Kg)</span>
+<span class="text-3xl font-black text-text-main dark:text-white leading-none mt-1">245</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="size-12 rounded-2xl bg-white dark:bg-stone-700 text-text-main dark:text-white shadow-sm border border-stone-200 dark:border-stone-600 flex items-center justify-center hover:bg-stone-50 active:scale-95 transition-all">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="size-12 rounded-2xl bg-primary text-white shadow-md shadow-orange-500/20 flex items-center justify-center hover:bg-orange-600 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-1">
+<button class="h-12 rounded-2xl bg-stone-100 dark:bg-stone-700 text-text-main dark:text-white font-bold text-sm hover:bg-stone-200 dark:hover:bg-stone-600 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined text-[20px] text-text-secondary group-hover:text-text-main dark:group-hover:text-white">edit</span> Sửa
+                            </button>
+<button class="h-12 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-bold text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">delete</span> Xóa
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="bg-surface-light dark:bg-surface-dark border-t border-[#f4ede7] dark:border-white/10 p-4 md:px-8 shrink-0 z-40">
+<div class="max-w-[1600px] mx-auto w-full bg-primary text-white rounded-3xl p-6 shadow-xl shadow-orange-500/20 flex flex-col xl:flex-row items-center justify-between gap-6 relative overflow-hidden">
+<div class="absolute -right-20 -top-20 size-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -left-20 -bottom-20 size-64 bg-black/5 rounded-full blur-3xl"></div>
+<div class="flex items-center gap-5 relative z-10 w-full xl:w-auto">
+<div class="size-16 rounded-2xl bg-white/20 flex items-center justify-center text-white shadow-sm shrink-0 backdrop-blur-sm border border-white/10">
+<span class="material-symbols-outlined text-3xl">payments</span>
+</div>
+<div class="flex flex-col">
+<p class="text-orange-50 font-bold text-sm uppercase tracking-wider opacity-90">Tổng giá trị kho</p>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="text-3xl md:text-4xl font-black text-white tracking-tight">187.435.000</span>
+<span class="text-2xl font-bold text-orange-100">đ</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-8 xl:gap-12 relative z-10 w-full xl:w-auto border-t xl:border-t-0 border-white/20 pt-4 xl:pt-0 justify-between xl:justify-end">
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-white/10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="text-orange-100 text-xs font-bold uppercase opacity-90">Tổng sản phẩm</span>
+<span class="text-xl font-black text-white">366</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="size-12 rounded-full bg-white/10 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex flex-col">
+<span class="text-orange-100 text-xs font-bold uppercase opacity-90">Hàng sắp hết</span>
+<span class="text-xl font-black text-white">5</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

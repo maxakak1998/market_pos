@@ -1,0 +1,9 @@
+#include "Generated.xcconfig"
+PRODUCT_BUNDLE_IDENTIFIER = com.izoe.pos_manager.win
+FLUTTER_BUILD_NAME = 1.0.0
+FLUTTER_BUILD_NUMBER = 1
+FLAVOR = prod
+FLUTTER_TARGET = lib/main.dart
+APP_NAME = Pos Manager
+LAUNCH_SCREEN_STORYBOARD=LaunchScreenProd
+BUNDLE_NAME = pos_manager
