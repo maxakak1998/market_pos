@@ -42,8 +42,9 @@ You MUST follow the Memory Bank system defined in [memory.instructions.md](../me
 
 1. **Implement Features** - Build complete features following architecture plan
 2. **Create Files** - Generate all layer files (domain, data, presentation)
-3. **Wire Dependencies** - Set up GetIt dependency injection
-4. **Follow Patterns** - Adhere strictly to project conventions
+3. **Create Documentation** - Add `docs/` folder with README.md
+4. **Wire Dependencies** - Set up GetIt dependency injection
+5. **Follow Patterns** - Adhere strictly to project conventions
 
 ---
 
@@ -64,7 +65,35 @@ Before making ANY changes, verify alignment with architecture:
 
 Always implement in this dependency order:
 
-### 1. Domain Layer (First)
+### 0. Documentation (First - Create Structure)
+```
+docs/
+├── README.md         # Feature overview (REQUIRED)
+├── api.md            # API documentation (if uses APIs)
+├── flows.md          # User flows (if complex)
+└── decisions.md      # Feature-specific decisions (if needed)
+```
+
+**README.md Template:**
+```markdown
+# [Feature Name]
+
+## Overview
+Brief description of what this feature does.
+
+## Dependencies
+- Other features this depends on
+- External packages used
+
+## Quick Start
+How to use/test this feature.
+
+## Related Docs
+- [API Documentation](./api.md)
+- [Other Feature](../../other_feature/docs/README.md)
+```
+
+### 1. Domain Layer (Second)
 ```
 domain/
 ├── models/           # Data models (pure Dart classes)

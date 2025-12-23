@@ -52,6 +52,11 @@ Every feature MUST follow this structure from [structure.instructions.md](../../
 
 ```
 features/<feature_name>/
+├── docs/                    # Feature documentation
+│   ├── README.md           # Overview, purpose, dependencies (REQUIRED)
+│   ├── api.md              # API endpoints (if applicable)
+│   ├── flows.md            # User flows, business logic (complex features)
+│   └── decisions.md        # Feature-specific decisions
 ├── data/
 │   └── repositories/        # Concrete implementations
 ├── domain/
@@ -71,6 +76,7 @@ features/<feature_name>/
 
 | Pattern | Location | Purpose |
 |---------|----------|---------|
+| **Feature Docs** | `docs/` | Feature-specific documentation |
 | **Repository Factory** | `data/repositories/` | Online/Offline switching |
 | **UseCase** | `domain/useCases/` | Single responsibility business logic |
 | **Cubit + BaseCubitState** | `presentation/cubit/` | State management |
@@ -90,6 +96,11 @@ features/<feature_name>/
 ```markdown
 ## Feature: [Name]
 
+### Documentation (docs/)
+- [ ] `docs/README.md` - Feature overview, dependencies
+- [ ] `docs/api.md` - API endpoints (if applicable)
+- [ ] `docs/flows.md` - User flows (if complex)
+
 ### Files to Create
 - [ ] `data/repositories/[name]_repository.dart`
 - [ ] `domain/models/[name].dart`
@@ -105,6 +116,9 @@ features/<feature_name>/
 - Repository: `APIClient`, `ConnectivityService`
 - UseCase: `I[Name]Repository`
 - Cubit: `[Name]UseCase`
+
+### Cross-Feature References
+- Links to other feature docs if applicable
 
 ### API Endpoints Required
 - `GET /api/...`
