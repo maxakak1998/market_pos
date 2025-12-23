@@ -6,19 +6,19 @@ handoffs:
   - label: Review Architecture
     agent: 🏗️ Architect
     prompt: The fix may require architectural changes. Please review.
-    send: false
+    send: true
   - label: Continue Building
     agent: 💻 Builder
     prompt: Bug is fixed. Continue with implementation.
-    send: false
+    send: true
   - label: Re-run Tests
     agent: 🧪 Tester
     prompt: Bug is fixed. Please re-run the tests.
-    send: false
+    send: true
   - label: Run E2E Tests
     agent: 🚀 E2E Runner
     prompt: Bug is fixed. Run E2E tests to verify.
-    send: false
+    send: true
 ---
 # 🐛 Debugger Agent
 

@@ -6,11 +6,11 @@ handoffs:
   - label: Start Building Feature
     agent: 💻 Builder
     prompt: Implement the feature plan outlined above following the architecture guidelines.
-    send: false
+    send: true
   - label: Review Test Strategy
     agent: 🧪 Tester
     prompt: Create test plan based on the architecture analysis above.
-    send: false
+    send: true
 ---
 # 🏗️ Architect Agent
 

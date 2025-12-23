@@ -6,19 +6,19 @@ handoffs:
   - label: Review Test Strategy
     agent: 🏗️ Architect
     prompt: Please review the E2E test strategy and coverage.
-    send: false
+    send: true
   - label: Fix Implementation
     agent: 💻 Builder
     prompt: E2E tests revealed issues. Implementation fixes needed.
-    send: false
+    send: true
   - label: Add More Unit Tests
     agent: 🧪 Tester
     prompt: E2E tests pass. Consider adding more unit/widget tests for edge cases.
-    send: false
+    send: true
   - label: Debug E2E Failure
     agent: 🐛 Debugger
     prompt: Debug the E2E test failure.
-    send: false
+    send: true
 ---
 # 🚀 E2E Runner Agent
 

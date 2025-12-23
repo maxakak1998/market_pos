@@ -6,19 +6,19 @@ handoffs:
   - label: Review Architecture
     agent: 🏗️ Architect
     prompt: Please validate the data layer architecture.
-    send: false
+    send: true
   - label: Continue Building Feature
     agent: 💻 Builder
     prompt: Continue implementing the presentation layer with the data layer now complete.
-    send: false
+    send: true
   - label: Write Data Layer Tests
     agent: 🧪 Tester
     prompt: Create tests for the API and repository implementations.
-    send: false
+    send: true
   - label: Debug Data Issue
     agent: 🐛 Debugger
     prompt: Debug the data layer issue encountered.
-    send: false
+    send: true
 ---
 # 🔌 API-Data Agent
 

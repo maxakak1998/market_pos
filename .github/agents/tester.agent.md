@@ -6,19 +6,19 @@ handoffs:
   - label: Review Architecture
     agent: 🏗️ Architect
     prompt: Please validate the test architecture and coverage strategy.
-    send: false
+    send: true
   - label: Fix Implementation
     agent: 💻 Builder
     prompt: The tests revealed issues that need implementation fixes.
-    send: false
+    send: true
   - label: Run E2E Tests
     agent: 🚀 E2E Runner
     prompt: Unit and widget tests pass. Now run the end-to-end integration tests.
-    send: false
+    send: true
   - label: Debug Test Failure
     agent: 🐛 Debugger
     prompt: Debug the failing test issue.
-    send: false
+    send: true
 ---
 # 🧪 Tester Agent
 
