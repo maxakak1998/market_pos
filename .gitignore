@@ -2,6 +2,12 @@
 # Flutter/Dart
 # ====================
 
+# Flutter tools (submodule/external)
+flutter_tools/
+
+# Memory Bank (local context)
+memory-bank/
+
 # Dart generated files
 *.dart_tool/
 .dart_tool/
